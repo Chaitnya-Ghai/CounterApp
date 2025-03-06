@@ -22,14 +22,18 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mvvminjetpackcompos.ui.theme.MvvmInJetpackComposTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val counterViewModel: CounterViewModel = CounterViewModel()
+//        val counterViewModel: CounterViewModel = viewModel()
+//        here its hows error , cause
+        //        viewModel() is a Composable function and must be inside setContent{}.
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val counterViewModel: CounterViewModel = viewModel()//Now, counterViewModel is retrieved inside the Composable context.
             MvvmInJetpackComposTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     CounterApp(
